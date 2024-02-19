@@ -1,1 +1,51 @@
+import 'package:flutter/material.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: const Color.fromARGB(255, 1, 5, 20),
+      ),
+      home: const HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('WhatsApp'),
+          backgroundColor: Colors.green,
+        ),
+        body: SafeArea(
+            child: ListView.separated(
+          itemBuilder: (ctx, index) {
+            return ListTile(
+                title: Text('Person $index'),
+                subtitle: Text('Message $index'),
+                trailing: Text('$index.30 am'),
+                leading: const CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(
+                      'https://th.bing.com/th/id/OIP.cWFY-f2HWyewx55rTukOOgHaEK?rs=1&pid=ImgDetMain'),
+                ));
+          },
+          separatorBuilder: (ctx, index) {
+            return const Divider();
+          },
+          itemCount: 30,
+        )));
+  }
+}
